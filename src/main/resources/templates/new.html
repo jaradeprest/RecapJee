@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>New</title>
+
+    <!-- bootstrap + css -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{css/main.css}">
+    <link rel="stylesheet" th:href="@{css/new.css}">
+    <!--css datatable-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+    <!--scripts-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <!--scripts datatable-->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#productTable').DataTable({
+                "paging":false,
+                "info":false,
+                "lengthChange":false,
+                "ordering":false,
+                "searching":false
+            });
+        });
+    </script>
+</head>
+<body>
+<div th:replace="~{menu::navigation}">
+
+</div>
+<div>
+    <h1 id="titelNew">ADD A PRODUCT TO OUR SITE</h1>
+</div>
+    <div id="newProductForm">
+        <form method="post" th:action="@{/new}" th:object="${newProduct}">
+                <table>
+                    <tr>
+                        <td><label>Name</label></td>
+                        <td><input type="text" th:field="*{naam}" placeholder="name of the product">
+                            <span th:if="${#fields.hasErrors('naam')}" th:errors="*{naam}" class="error"></span>
+                        </td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td><label>Price</label></td>
+                        <td><input type="text" th:field="*{vraagprijs}" placeholder="your price">
+                            <span th:if="${#fields.hasErrors('vraagprijs')}" th:errors="*{vraagprijs}" class="error"></span>
+                        </td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td><label>Discription</label></td>
+                        <td>
+                            <textarea th:field="*{omschrijving}" cols="100" rows="5" placeholder="discription of the product"></textarea>
+                            <span th:if="${#fields.hasErrors('omschrijving')}" th:errors="*{omschrijving}" class="error"></span>
+                        </td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td><label>Username</label></td>
+                        <td>
+                            <input type="text" th:field="*{username}" placeholder="Your username">
+                            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></span>
+                        </td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td><label>User-email</label></td>
+                        <td>
+                            <input type="text" th:field="*{emailadres}" placeholder="Your email">
+                            <span th:if="${#fields.hasErrors('emailadres')}" th:errors="*{emailadres}" class="error"></span>
+                        </td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td id="submitknop"><input type="submit"></td>
+                    </tr>
+                </table>
+            </form>
+    </div>
+<footer>&copy; Jara De Prest</footer>
+</body>
+</html>
